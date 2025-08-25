@@ -1,0 +1,22 @@
+* {
+    font-family: "Jetbrains Mono", monospace;
+    color: white;
+    font-size: large;
+
+}
+
+body {
+    margin-left: 2%;
+    margin-top: 2%;
+    background-color: rgb(16, 11, 34);
+}
+
+.navigation-bar a {
+    margin-left: 6%;
+    display: block;
+    text-decoration: none;
+}
+
+.command {
+    color: yellow;
+}
