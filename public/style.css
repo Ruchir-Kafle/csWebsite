@@ -17,7 +17,7 @@ body {
 
 .navigation-bar span {
     margin-right: 1%;
-    margin-left: 4%;
+    margin-left: 2%;
 }
 
 .navigation-bar a {
@@ -29,7 +29,7 @@ body {
 }
 
 .console {
-    position: sticky;
+    position: fixed;
     display: flex;
     align-items: center;
     background-color: rgb(149, 145, 166);
