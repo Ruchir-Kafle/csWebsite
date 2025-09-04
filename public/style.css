@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 * {
     font-family: "Jetbrains Mono", monospace;
     color: white;
@@ -7,7 +9,7 @@
 
 body {
     margin: 0;
-    background-color: rgb(16, 11, 34);
+    background-color: rgb(27, 27, 27);
     height: 100vh;
 }
 
@@ -22,10 +24,6 @@ body {
 
 .navigation-bar a {
     text-decoration: none;
-}
-
-.command {
-    color: yellow;
 }
 
 .console {
@@ -44,4 +42,23 @@ body {
     text-decoration: none;
     color: white;
     margin-left: 2%;
+}
+
+.command {
+    color: yellow;
+}
+
+.user {
+    color: blue;
+}
+
+.whiteborder {
+    border-style: solid;
+    border-width: 3px;
+    border-color: white;
+    border-radius: 5px;
+}
+
+.wall-of-text p {
+    margin: 1px;
 }
