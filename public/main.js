@@ -22,35 +22,43 @@ function addConsole() {
 }
 
 function lineOfText() {
-    let characterList = `@#$%^&*()_+-=[{}]'";:.?`;
+    const characterList = `@#$%^&*()_+-=[{}]'";:.?`;
     
-    let currentLine = `<p>`;
+    let currentLine = document.createElement("p");
 
     for (let i = 0; i < Math.floor( 40 + Math.random() * 40 ); i++) {
         let randomCharacter = characterList[Math.floor( Math.random() * characterList.length )];
-        currentLine += randomCharacter;
+        currentLine.innerHTML += randomCharacter;
     }
 
-    currentLine += `</p>`;
     return currentLine;
 }
 
 function wallOfText() {
-    const saveContents = body.innerHTML;
-    let wall = `<section class="wall-of-text">`;
+    const textTimeoutMilliseconds = 100;
+    const linesOfText = 50;
 
-    for (let i = 0; i < 50; i++) {
-        wall += lineOfText();
+    body.innerHTML += `<div class="wall-of-text"></div>`;
+    const wallDiv = document.querySelector(`.wall-of-text`);
+
+    let count = 0;
+
+    function generateLines(count) {
+        if (count > 49) return
+
+        setTimeout(() => {
+            wallDiv.appendChild(lineOfText());
+            generateLines(count + 1);
+        }, textTimeoutMilliseconds);
     }
 
-    wall += `</section>`;
-    body.innerHTML += wall;
-
+    generateLines(count);
 }
 
 function consoleBlinker() {
-    const blinker = `<span class="blinker">|</span>`;
     const blinkerIntervalMilliseconds = 500;
+
+    const blinker = `<span class="blinker">|</span>`;
     const originalConsoleInnerHTML = document.querySelector(`.console .command`).innerHTML;
     
     let blinkerActive = false;
@@ -67,9 +75,20 @@ function consoleBlinker() {
         }
 
     }, blinkerIntervalMilliseconds);
-
 }
 
-addConsole();
-wallOfText();
-consoleBlinker();
+function main() {
+    const saveContents = body.innerHTML;
+    body.innerHTML = ``;
+
+    setTimeout(wallOfText, 1000);
+
+    setTimeout(() => {
+        body.innerHTML = saveContents;
+
+        addConsole();
+        consoleBlinker();
+    }, 5000)
+}
+
+main();
