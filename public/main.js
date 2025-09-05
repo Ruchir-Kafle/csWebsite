@@ -1,8 +1,9 @@
 const body = document.body;
 
+
 function addConsole() {
-    const homeConsoleDiv = document.querySelector(`#home-console`);
     const indexConsoleDiv = document.querySelector(`#index-console`);
+    const homeConsoleDiv = document.querySelector(`#home-console`);
     let directory = "./home.html";
     let consoleText = ".."
 
@@ -21,39 +22,7 @@ function addConsole() {
     </div>`;
 }
 
-function lineOfText() {
-    const characterList = `@#$%^&*()_+-=[{}]'";:.?`;
-    
-    let currentLine = document.createElement("p");
 
-    for (let i = 0; i < Math.floor( 40 + Math.random() * 40 ); i++) {
-        let randomCharacter = characterList[Math.floor( Math.random() * characterList.length )];
-        currentLine.innerHTML += randomCharacter;
-    }
-
-    return currentLine;
-}
-
-function wallOfText() {
-    const textTimeoutMilliseconds = 100;
-    const linesOfText = 50;
-
-    body.innerHTML += `<div class="wall-of-text"></div>`;
-    const wallDiv = document.querySelector(`.wall-of-text`);
-
-    let count = 0;
-
-    function generateLines(count) {
-        if (count > 49) return
-
-        setTimeout(() => {
-            wallDiv.appendChild(lineOfText());
-            generateLines(count + 1);
-        }, textTimeoutMilliseconds);
-    }
-
-    generateLines(count);
-}
 
 function consoleBlinker() {
     const blinkerIntervalMilliseconds = 500;
@@ -77,18 +46,87 @@ function consoleBlinker() {
     }, blinkerIntervalMilliseconds);
 }
 
-function main() {
-    const saveContents = body.innerHTML;
-    body.innerHTML = ``;
 
-    setTimeout(wallOfText, 1000);
+function lineOfText() {
+    const characterList = `@#$%^&*()_+-=[{}]'";:.?`;
+    
+    let currentLine = document.createElement("p");
+
+    for (let i = 0; i < Math.floor( 40 + Math.random() * 40 ); i++) {
+        let randomCharacter = characterList[Math.floor( Math.random() * characterList.length )];
+        currentLine.innerHTML += randomCharacter;
+    }
+
+    return currentLine;
+}
+
+
+function recursiveGeneration(count, max, linesResolve) {
+    const textTimeoutMilliseconds = 100;
+    
+    if (count > max) {linesResolve(); return}
 
     setTimeout(() => {
-        body.innerHTML = saveContents;
+        wallDiv.appendChild(lineOfText());
+        recursiveGeneration(count + 1, max, linesResolve);
+    }, textTimeoutMilliseconds);
+}
 
-        addConsole();
-        consoleBlinker();
-    }, 5000)
+
+async function wallOfText(wallResolve) {
+
+    body.innerHTML += `<div class="wall-of-text"></div>`;
+    const wallDiv = document.querySelector(`.wall-of-text`);
+
+    let lines = [
+        10,
+        "Hack into Ruchir's system",
+        5,
+        "Scroll down",
+        5,
+        "Click on the command in the terminal at the bottom",
+        10
+    ]
+
+    for (let line of lines) {
+
+        if (typeof line === "number") {
+            await new Promise(linesResolve => recursiveGeneration(0, line, linesResolve));
+        } else {
+            let currentLine = document.createElement("p");
+            currentLine.classList.add("important-line");
+            currentLine.innerHTML = line;
+            wallDiv.appendChild(currentLine);
+        }
+
+    }
+
+    wallResolve();
+
+}
+
+
+function typeWriter() {
+
+}
+
+
+async function main() {
+    const delay = 1000
+
+    const indexConsoleDiv = document.querySelector(`#index-console`);
+    const saveContents = body.innerHTML;
+
+    if (indexConsoleDiv) {
+        body.innerHTML = ``;
+    
+        await new Promise(delayResolve => setTimeout(() => delayResolve(), delay))
+        await new Promise(wallResolve => wallOfText(wallResolve));
+        body.innerHTML += saveContents;
+    }
+
+    addConsole();
+    consoleBlinker();
 }
 
 main();
