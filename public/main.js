@@ -61,14 +61,16 @@ function lineOfText() {
 }
 
 
-function recursiveGeneration(count, max, linesResolve) {
-    const textTimeoutMilliseconds = 100;
+function staggeredGenerator(count, max, textTimeoutMilliseconds, action, linesResolve=null) {
     
-    if (count > max) {linesResolve(); return}
+    if (count >= max) {
+        if (linesResolve) linesResolve();
+        return;
+    }
 
     setTimeout(() => {
-        wallDiv.appendChild(lineOfText());
-        recursiveGeneration(count + 1, max, linesResolve);
+        action(count);
+        staggeredGenerator(count + 1, max, 100, action, linesResolve);
     }, textTimeoutMilliseconds);
 }
 
@@ -91,7 +93,9 @@ async function wallOfText(wallResolve) {
     for (let line of lines) {
 
         if (typeof line === "number") {
-            await new Promise(linesResolve => recursiveGeneration(0, line, linesResolve));
+            await new Promise(linesResolve => staggeredGenerator(0, line, 100, (count) => {
+                wallDiv.appendChild(lineOfText())
+            }, linesResolve));
         } else {
             let currentLine = document.createElement("p");
             currentLine.classList.add("important-line");
@@ -106,15 +110,17 @@ async function wallOfText(wallResolve) {
 }
 
 
-function typeWriter() {
-
+function typeWriter(element, text) {    
+    staggeredGenerator(0, text.length, 100, (count) => {
+        element.innerHTML += text[count]; 
+    });
 }
 
 
 async function main() {
     const delay = 1000
 
-    const indexConsoleDiv = document.querySelector(`#index-console`);
+    let indexConsoleDiv = document.querySelector(`#index-console`);
     const saveContents = body.innerHTML;
 
     if (indexConsoleDiv) {
@@ -124,9 +130,13 @@ async function main() {
         await new Promise(wallResolve => wallOfText(wallResolve));
         body.innerHTML += saveContents;
     }
-
+    
     addConsole();
     consoleBlinker();
+
+    indexConsoleDiv = document.querySelector(`#index-console`);
+    if (indexConsoleDiv)
+        typeWriter(indexConsoleDiv, "aeenionegoiweoinwoingwonowngoiwrgnoin");
 }
 
 main();
