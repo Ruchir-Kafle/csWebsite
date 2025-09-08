@@ -9,17 +9,25 @@ function addConsole() {
 
     if (homeConsoleDiv != null) {
         directory = "../index.html";
+
+        body.removeChild(homeConsoleDiv);
     } else if (indexConsoleDiv != null) {
         directory = "pages/home.html";
         consoleText = "home.html";
+
+        body.removeChild(indexConsoleDiv);
     }
 
     body.innerHTML += 
     `<div class="console">
         <a href="${directory}">
-            <span class="user">root@ruchir:~$</span> <span class="command">code ${consoleText}</span>
+            <span class="user">root@ruchir:~$</span> <span class="command"></span>
         </a>
     </div>`;
+
+    consoleCommand = document.querySelector(`.command`);
+    if (consoleCommand)
+        typeWriter(consoleCommand, "code " + consoleText);
 }
 
 
@@ -72,6 +80,7 @@ function staggeredGenerator(count, max, textTimeoutMilliseconds, action, linesRe
         action(count);
         staggeredGenerator(count + 1, max, 100, action, linesResolve);
     }, textTimeoutMilliseconds);
+
 }
 
 
@@ -134,9 +143,6 @@ async function main() {
     addConsole();
     consoleBlinker();
 
-    indexConsoleDiv = document.querySelector(`#index-console`);
-    if (indexConsoleDiv)
-        typeWriter(indexConsoleDiv, "aeenionegoiweoinwoingwonowngoiwrgnoin");
 }
 
 main();
