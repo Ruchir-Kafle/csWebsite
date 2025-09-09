@@ -1,19 +1,24 @@
 const body = document.body;
 
 
-function addConsole() {
+async function addConsole(consoleResolve) {
+    const delayPerLetter = 100;
+
     const indexConsoleDiv = document.querySelector(`#index-console`);
     const homeConsoleDiv = document.querySelector(`#home-console`);
     let directory = "./home.html";
     let consoleText = ".."
+    let command = "cat "
 
     if (homeConsoleDiv != null) {
         directory = "../index.html";
+        command = "cd ";
 
         body.removeChild(homeConsoleDiv);
     } else if (indexConsoleDiv != null) {
         directory = "pages/home.html";
-        consoleText = "home.html";
+        consoleText = "./home/";
+        command = "cd ";
 
         body.removeChild(indexConsoleDiv);
     }
@@ -25,11 +30,22 @@ function addConsole() {
         </a>
     </div>`;
 
-    consoleCommand = document.querySelector(`.command`);
+
+    consoleCommands = document.querySelectorAll(`.command`);
+    consoleCommand = consoleCommands.item(consoleCommands.length - 1);
     if (consoleCommand)
-        typeWriter(consoleCommand, "code " + consoleText);
+        await new Promise (typeWriterResolve => typeWriter(consoleCommand, command + consoleText, delayPerLetter, typeWriterResolve));
+
+        consoleResolve();
+
 }
 
+
+function typeWriter(element, text, delayPerLetter, typeWriterResolve) {    
+    staggeredGenerator(0, text.length, delayPerLetter, (count) => {
+        element.innerHTML += text[count]; 
+    }, typeWriterResolve);
+}
 
 
 function consoleBlinker() {
@@ -69,40 +85,41 @@ function lineOfText() {
 }
 
 
-function staggeredGenerator(count, max, textTimeoutMilliseconds, action, linesResolve=null) {
+function staggeredGenerator(count, max, textTimeoutMilliseconds, action, resolve=null) {
     
     if (count >= max) {
-        if (linesResolve) linesResolve();
+        if (resolve) resolve();
         return;
     }
 
     setTimeout(() => {
         action(count);
-        staggeredGenerator(count + 1, max, 100, action, linesResolve);
+        staggeredGenerator(count + 1, max, textTimeoutMilliseconds, action, resolve);
     }, textTimeoutMilliseconds);
 
 }
 
 
 async function wallOfText(wallResolve) {
+    const delayPerLine = 50;
 
     body.innerHTML += `<div class="wall-of-text"></div>`;
     const wallDiv = document.querySelector(`.wall-of-text`);
 
     let lines = [
-        10,
+        5,
         "Hack into Ruchir's system",
         5,
-        "Scroll down",
-        5,
+        "Go to bottom of page",
+        6,
         "Click on the command in the terminal at the bottom",
-        10
+        7
     ]
 
     for (let line of lines) {
 
         if (typeof line === "number") {
-            await new Promise(linesResolve => staggeredGenerator(0, line, 100, (count) => {
+            await new Promise(linesResolve => staggeredGenerator(0, line, delayPerLine, (count) => {
                 wallDiv.appendChild(lineOfText())
             }, linesResolve));
         } else {
@@ -119,13 +136,6 @@ async function wallOfText(wallResolve) {
 }
 
 
-function typeWriter(element, text) {    
-    staggeredGenerator(0, text.length, 100, (count) => {
-        element.innerHTML += text[count]; 
-    });
-}
-
-
 async function main() {
     const delay = 1000
 
@@ -139,8 +149,8 @@ async function main() {
         await new Promise(wallResolve => wallOfText(wallResolve));
         body.innerHTML += saveContents;
     }
-    
-    addConsole();
+
+    await new Promise(consoleResolve => addConsole(consoleResolve));
     consoleBlinker();
 
 }
