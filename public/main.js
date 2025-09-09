@@ -150,6 +150,26 @@ async function main() {
         body.innerHTML += saveContents;
     }
 
+    const navBar = 
+    `
+    <div class="navigation">
+        <p>
+            <span class="user">root@ruchir:~$</span> <span class="command">ls</span>
+        </p>
+        <nav class="navigation-bar">
+            <div><span>├────</span><a href="./about.html">about.html</a></div>
+            <div><span>├────</span><a href="./cs.html">cs.html</a></div>
+            <div><span>├────</span><a href="./stemOne.html">stem_one.html</a></div>
+            <div><span>├────</span><a href="./stemTwo.html">stem_two.html</a></div>
+            <div><span>├────</span><a href="./physics.html">physics.html</a></div>
+            <div><span>├────</span><a href="./spanish.html">spanish.html</a></div>
+            <div><span>├────</span><a href="./math.html">math.html</a></div>
+            <div><span>└────</span><a href="./humanities.html">humanities.html</a></div>
+        </nav>
+    </div>
+    `;
+
+
     await new Promise(consoleResolve => addConsole(consoleResolve));
     consoleBlinker();
 
