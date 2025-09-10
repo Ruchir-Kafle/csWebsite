@@ -140,19 +140,23 @@ async function main() {
     const delay = 1000
 
     let indexConsoleDiv = document.querySelector(`#index-console`);
-    const saveContents = body.innerHTML;
-
-    if (indexConsoleDiv) {
-        body.innerHTML = ``;
     
+    if (indexConsoleDiv) {
+        let saveContents = body.innerHTML;
+        body.innerHTML = ``;
+        
         await new Promise(delayResolve => setTimeout(() => delayResolve(), delay))
         await new Promise(wallResolve => wallOfText(wallResolve));
         body.innerHTML += saveContents;
-    }
+    } else {
+        if (body.children.length <= 1)
+           body.innerHTML += `<p>blah blah blah</p>`;
 
-    const navBar = 
-    `
-    <div class="navigation">
+        const navBar = document.createElement("div");
+        navBar.classList.add("navigation");
+    
+        navBar.innerHTML =
+        `
         <p>
             <span class="user">root@ruchir:~$</span> <span class="command">ls</span>
         </p>
@@ -166,13 +170,14 @@ async function main() {
             <div><span>├────</span><a href="./math.html">math.html</a></div>
             <div><span>└────</span><a href="./humanities.html">humanities.html</a></div>
         </nav>
-    </div>
-    `;
+        `;
+    
+        body.prepend(navBar);
+    }
 
 
     await new Promise(consoleResolve => addConsole(consoleResolve));
     consoleBlinker();
-
 }
 
 main();

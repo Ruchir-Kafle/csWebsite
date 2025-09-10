@@ -61,7 +61,8 @@ body {
 
 div.school,
 div.volunteering,
-div.family {
+div.family,
+div.me {
     display: flex;
     gap: 20px;
     margin: 20px;
