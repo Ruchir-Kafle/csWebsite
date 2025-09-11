@@ -67,3 +67,7 @@ div.me {
     gap: 20px;
     margin: 20px;
 }
+
+.no-contents-error p {
+    color: red;
+}

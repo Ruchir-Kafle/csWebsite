@@ -149,8 +149,8 @@ async function main() {
         await new Promise(wallResolve => wallOfText(wallResolve));
         body.innerHTML += saveContents;
     } else {
-        if (body.children.length <= 1)
-           body.innerHTML += `<p>blah blah blah</p>`;
+        if (body.children.length <= 2 && !document.querySelector(`#home-console`))
+           body.innerHTML += `<div class="no-contents-error"><p>404: FILE NOT FOUND.</p> <p>Please try again when Ruchir has made this file.</p></div>`;
 
         const navBar = document.createElement("div");
         navBar.classList.add("navigation");
