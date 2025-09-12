@@ -7,18 +7,16 @@ async function addConsole(consoleResolve) {
     const indexConsoleDiv = document.querySelector(`#index-console`);
     const homeConsoleDiv = document.querySelector(`#home-console`);
     let directory = "./home.html";
-    let consoleText = ".."
-    let command = "cat "
+    let consoleText = "..";
+    let command = "cd ";
 
     if (homeConsoleDiv != null) {
         directory = "../index.html";
-        command = "cd ";
 
         body.removeChild(homeConsoleDiv);
     } else if (indexConsoleDiv != null) {
         directory = "pages/home.html";
         consoleText = "./home/";
-        command = "cd ";
 
         body.removeChild(indexConsoleDiv);
     }
@@ -136,6 +134,14 @@ async function wallOfText(wallResolve) {
 }
 
 
+function topConsole() {
+    const console = 
+    `<p>
+        <span class="user">root@ruchir:~$</span> <span class="command">cat </span>
+    </p>`;
+}
+
+
 async function main() {
     const delay = 1000
 
@@ -161,14 +167,14 @@ async function main() {
             <span class="user">root@ruchir:~$</span> <span class="command">ls</span>
         </p>
         <nav class="navigation-bar">
-            <div><span>├────</span><a href="./about.html">about.html</a></div>
-            <div><span>├────</span><a href="./cs.html">cs.html</a></div>
-            <div><span>├────</span><a href="./stemOne.html">stem_one.html</a></div>
-            <div><span>├────</span><a href="./stemTwo.html">stem_two.html</a></div>
-            <div><span>├────</span><a href="./physics.html">physics.html</a></div>
-            <div><span>├────</span><a href="./spanish.html">spanish.html</a></div>
-            <div><span>├────</span><a href="./math.html">math.html</a></div>
-            <div><span>└────</span><a href="./humanities.html">humanities.html</a></div>
+            <li><span>├────</span><a href="./about.html">about.html</a></li>
+            <li><span>├────</span><a href="./cs.html">cs.html</a></li>
+            <li><span>├────</span><a href="./stemOne.html">stem_one.html</a></li>
+            <li><span>├────</span><a href="./stemTwo.html">stem_two.html</a></li>
+            <li><span>├────</span><a href="./physics.html">physics.html</a></li>
+            <li><span>├────</span><a href="./spanish.html">spanish.html</a></li>
+            <li><span>├────</span><a href="./math.html">math.html</a></li>
+            <li><span>└────</span><a href="./humanities.html">humanities.html</a></li>
         </nav>
         `;
     

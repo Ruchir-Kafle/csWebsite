@@ -7,14 +7,27 @@
 
 }
 
+
 body {
     margin: 0;
     background-color: rgb(27, 27, 27);
     height: 100vh;
 }
 
+a {
+    color: rgb(0, 255, 26);
+}
+
+.base-image {
+    width: 35%;
+}
+
 .navigation {
     margin-left: 2%;
+}
+
+.navigation-bar li {
+    list-style-type: none;
 }
 
 .navigation-bar span {
@@ -59,10 +72,10 @@ body {
     color: red;
 }
 
-div.school,
-div.volunteering,
-div.family,
-div.me {
+.school,
+.volunteering,
+.family,
+.me {
     display: flex;
     gap: 20px;
     margin: 20px;
