@@ -4,14 +4,18 @@
     font-family: "Jetbrains Mono", monospace;
     color: white;
     font-size: large;
-
 }
 
 
 body {
-    margin: 0;
+    margin: 1%;
     background-color: rgb(27, 27, 27);
     height: 100vh;
+}
+
+main {
+    width: 100vw;
+    /* make this the parent of all the content */
 }
 
 a {
@@ -22,9 +26,6 @@ a {
     width: 35%;
 }
 
-.navigation {
-    margin-left: 2%;
-}
 
 .navigation-bar li {
     list-style-type: none;

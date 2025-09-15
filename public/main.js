@@ -134,11 +134,11 @@ async function wallOfText(wallResolve) {
 }
 
 
-function topConsole() {
-    const console = 
-    `<p>
-        <span class="user">root@ruchir:~$</span> <span class="command">cat </span>
-    </p>`;
+function topConsole(navigationNode, file) {
+    const console = document.createElement("p");
+    console.innerHTML = `<span class="user">root@ruchir:~$</span> <span class="command">cat ${file} </span>`;
+    
+    navigationNode.insertAdjacentElement("afterend", console);
 }
 
 
@@ -158,7 +158,7 @@ async function main() {
         if (body.children.length <= 2 && !document.querySelector(`#home-console`))
            body.innerHTML += `<div class="no-contents-error"><p>404: FILE NOT FOUND.</p> <p>Please try again when Ruchir has made this file.</p></div>`;
 
-        const navBar = document.createElement("div");
+        let navBar = document.createElement("div");
         navBar.classList.add("navigation");
     
         navBar.innerHTML =
@@ -167,7 +167,7 @@ async function main() {
             <span class="user">root@ruchir:~$</span> <span class="command">ls</span>
         </p>
         <nav class="navigation-bar">
-            <li><span>├────</span><a href="./about.html">about.html</a></li>
+            <li><span>├────</span><a href="./about.html">about.html</a> <- link</li>
             <li><span>├────</span><a href="./cs.html">cs.html</a></li>
             <li><span>├────</span><a href="./stemOne.html">stem_one.html</a></li>
             <li><span>├────</span><a href="./stemTwo.html">stem_two.html</a></li>
@@ -179,6 +179,12 @@ async function main() {
         `;
     
         body.prepend(navBar);
+
+        navBar = document.querySelector(".navigation");
+        if (navBar && document.title != "terminal") {
+            topConsole(navBar, document.title);
+        }
+
     }
 
 
@@ -186,4 +192,9 @@ async function main() {
     consoleBlinker();
 }
 
-main();
+
+// Event Listener
+
+document.addEventListener("DOMContentLoaded", function() {
+    main();
+})
