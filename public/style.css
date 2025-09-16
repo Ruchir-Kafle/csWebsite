@@ -8,14 +8,14 @@
 
 
 body {
-    margin: 1%;
+    margin: 0;
     background-color: rgb(27, 27, 27);
     height: 100vh;
 }
 
 main {
-    width: 100vw;
-    /* make this the parent of all the content */
+    margin: 1%;
+    width: 100%;
 }
 
 a {

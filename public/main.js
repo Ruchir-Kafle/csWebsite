@@ -4,21 +4,13 @@ const body = document.body;
 async function addConsole(consoleResolve) {
     const delayPerLetter = 100;
 
-    const indexConsoleDiv = document.querySelector(`#index-console`);
-    const homeConsoleDiv = document.querySelector(`#home-console`);
-    let directory = "./home.html";
+    let directory = "../index.html";
     let consoleText = "..";
     let command = "cd ";
 
-    if (homeConsoleDiv != null) {
-        directory = "../index.html";
-
-        body.removeChild(homeConsoleDiv);
-    } else if (indexConsoleDiv != null) {
+    if (document.title == "ruchir_kafle's_website") {
         directory = "pages/home.html";
         consoleText = "./home/";
-
-        body.removeChild(indexConsoleDiv);
     }
 
     body.innerHTML += 
@@ -145,18 +137,16 @@ function topConsole(navigationNode, file) {
 async function main() {
     const delay = 1000
 
-    let indexConsoleDiv = document.querySelector(`#index-console`);
-    
-    if (indexConsoleDiv) {
-        let saveContents = body.innerHTML;
-        body.innerHTML = ``;
-        
+    if (document.title == "ruchir_kafle's_website") {
         await new Promise(delayResolve => setTimeout(() => delayResolve(), delay))
         await new Promise(wallResolve => wallOfText(wallResolve));
-        body.innerHTML += saveContents;
     } else {
-        if (body.children.length <= 2 && !document.querySelector(`#home-console`))
-           body.innerHTML += `<div class="no-contents-error"><p>404: FILE NOT FOUND.</p> <p>Please try again when Ruchir has made this file.</p></div>`;
+        let main = document.createElement("main");
+        body.prepend(main);
+        main = document.querySelector("main");
+
+        if (body.children.length <= 2 && document.title != "ruchir_kafle's_website" && document.title != "terminal")
+           main.innerHTML += `<div class="no-contents-error"><p>404: FILE NOT FOUND.</p> <p>Please try again when Ruchir has made this file.</p></div>`;
 
         let navBar = document.createElement("div");
         navBar.classList.add("navigation");
@@ -178,7 +168,7 @@ async function main() {
         </nav>
         `;
     
-        body.prepend(navBar);
+        main.prepend(navBar);
 
         navBar = document.querySelector(".navigation");
         if (navBar && document.title != "terminal") {
@@ -186,7 +176,6 @@ async function main() {
         }
 
     }
-
 
     await new Promise(consoleResolve => addConsole(consoleResolve));
     consoleBlinker();
