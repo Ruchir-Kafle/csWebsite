@@ -1,7 +1,4 @@
-const body = document.body;
-
-
-async function addConsole(consoleResolve) {
+async function addConsole(body, consoleResolve) {
     const delayPerLetter = 100;
 
     let directory = "../index.html";
@@ -90,10 +87,10 @@ function staggeredGenerator(count, max, textTimeoutMilliseconds, action, resolve
 }
 
 
-async function wallOfText(wallResolve) {
+async function wallOfText(main, wallResolve) {
     const delayPerLine = 50;
 
-    body.innerHTML += `<div class="wall-of-text"></div>`;
+    main.innerHTML += `<div class="wall-of-text"></div>`;
     const wallDiv = document.querySelector(`.wall-of-text`);
 
     let lines = [
@@ -128,24 +125,21 @@ async function wallOfText(wallResolve) {
 
 function topConsole(navigationNode, file) {
     const console = document.createElement("p");
+    console.classList.add("top-console");
     console.innerHTML = `<span class="user">root@ruchir:~$</span> <span class="command">cat ${file} </span>`;
     
     navigationNode.insertAdjacentElement("afterend", console);
 }
 
 
-async function main() {
-    const delay = 1000
+async function start(main, body) {
+    const delay = 1000;
 
     if (document.title == "ruchir_kafle's_website") {
         await new Promise(delayResolve => setTimeout(() => delayResolve(), delay))
-        await new Promise(wallResolve => wallOfText(wallResolve));
+        await new Promise(wallResolve => wallOfText(main, wallResolve));
     } else {
-        let main = document.createElement("main");
-        body.prepend(main);
-        main = document.querySelector("main");
-
-        if (body.children.length <= 2 && document.title != "ruchir_kafle's_website" && document.title != "terminal")
+        if (main.children.length <= 1 && document.title != "terminal")
            main.innerHTML += `<div class="no-contents-error"><p>404: FILE NOT FOUND.</p> <p>Please try again when Ruchir has made this file.</p></div>`;
 
         let navBar = document.createElement("div");
@@ -177,7 +171,7 @@ async function main() {
 
     }
 
-    await new Promise(consoleResolve => addConsole(consoleResolve));
+    await new Promise(consoleResolve => addConsole(body, consoleResolve));
     consoleBlinker();
 }
 
@@ -185,5 +179,8 @@ async function main() {
 // Event Listener
 
 document.addEventListener("DOMContentLoaded", function() {
-    main();
+    const body = document.body
+    const main = document.querySelector("main");
+
+    start(main, body);
 })
