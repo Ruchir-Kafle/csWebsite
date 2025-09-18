@@ -69,12 +69,11 @@ img {
 
 .important-line {
     margin: 10px 0px;
-    width: fit-content;
+    width: 100%;
 }
 
 .important-line * {
     color: red;
-    text-align: center;
 }
 
 .school,

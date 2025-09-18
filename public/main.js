@@ -162,11 +162,12 @@ function preProcessing(main) {
     if (document.title == "terminal")
         main.innerHTML += `
         <div class="important-line">
-            ${`<p>` + `v`.repeat(terminalArrowCount) + `</p>`}
-            <p>Select a file to view (in <span class="green">green</span>) from the navigation bar above.</p>
-            ${`<p>` + `^`.repeat(terminalArrowCount) + `</p>`}
+        <p>Select a file to view (in <span class="green">green</span>) from the navigation bar above.</p>
         </div>
         `;
+        
+        // ${`<p>` + `v`.repeat(terminalArrowCount) + `</p>`}
+        // ${`<p>` + `^`.repeat(terminalArrowCount) + `</p>`}
 }
 
 
