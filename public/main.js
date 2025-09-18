@@ -24,7 +24,7 @@ async function addConsole(body, consoleResolve) {
     if (document.title == "ruchir_kafle's_website") {
         command = "enter ";
         directory = "pages/terminal.html";
-        consoleText = "ruchir's_system";
+        consoleText = "ruchir's_computer";
     }
 
     body.innerHTML += 
@@ -106,7 +106,7 @@ async function wallOfText(main, wallResolve) {
 
     let lines = [
         5,
-        "Hack into Ruchir's system,",
+        "Hack into Ruchir's computer,",
         5,
         "Go to bottom of page,",
         6,
