@@ -3,7 +3,7 @@
 * {
     font-family: "Jetbrains Mono", monospace;
     color: white;
-    font-size: large;
+    font-size: 20px;
 }
 
 
@@ -15,18 +15,15 @@ body {
 
 main {
     padding: 1%;
-    
-    width: 100%;
 }
 
 a {
     color: rgb(0, 255, 26);
 }
 
-.base-image {
-    width: 35%;
+img {
+    max-width: 100%;
 }
-
 
 .navigation-bar li {
     list-style-type: none;
@@ -70,19 +67,53 @@ a {
     margin: 2px;
 }
 
-.wall-of-text .important-line {
+.important-line {
+    margin: 10px 0px;
+    width: fit-content;
+}
+
+.important-line * {
     color: red;
+    text-align: center;
 }
 
 .school,
 .volunteering,
 .family,
 .me {
-    display: flex;
-    gap: 20px;
+    display: grid;
     margin: 20px;
+    justify-items: center;
+    align-items: center;
+    gap: 2%;
+    grid-auto-flow: column;    
+}
+
+.school,
+.family {
+    grid-template-columns: 1fr 2fr;
+}
+
+.volunteering,
+.me {
+    grid-template-columns: 2fr 1fr;
+}
+
+article h1 {
+    font-size: 30px;
+}
+
+.images {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .no-contents-error p {
     color: red;
+}
+
+.green {
+    color: rgb(0, 255, 26);
 }
