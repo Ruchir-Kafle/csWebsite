@@ -79,7 +79,9 @@ img {
 .school,
 .volunteering,
 .family,
-.me {
+.me,
+.assignment-1,
+.assignment-2 {
     display: grid;
     margin: 20px;
     justify-items: center;
@@ -88,17 +90,19 @@ img {
     grid-auto-flow: column;    
 }
 
-.school,
-.family {
-    grid-template-columns: 1fr 2fr;
-}
-
 .volunteering,
-.me {
+.me, 
+.assignment-1 {
     grid-template-columns: 2fr 1fr;
 }
 
-article h1 {
+.school,
+.family,
+.assignment-2 {
+    grid-template-columns: 1fr 2fr;
+}
+
+article h2 {
     font-size: 30px;
 }
 
