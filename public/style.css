@@ -81,7 +81,14 @@ img {
 .family,
 .me,
 .assignment-1,
-.assignment-2 {
+.assignment-2,
+.abstracts, 
+.phrases,
+.background,
+.methodology,
+.pictures,
+.references,
+.feb-fair-poster {
     display: grid;
     margin: 20px;
     justify-items: center;
@@ -90,20 +97,34 @@ img {
     grid-auto-flow: column;    
 }
 
+.pictures {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
 .volunteering,
 .me, 
-.assignment-1 {
+.assignment-1,
+.references,
+.abstracts {
     grid-template-columns: 2fr 1fr;
 }
 
 .school,
 .family,
-.assignment-2 {
+.assignment-2,
+.feb-fair-poster {
     grid-template-columns: 1fr 2fr;
 }
 
-article h2 {
+article h2,
+h1,
+h1.research-proposal a {
     font-size: 30px;
+}
+
+.research-proposal {
+    text-align: center;
 }
 
 .images {

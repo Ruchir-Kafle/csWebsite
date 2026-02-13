@@ -18,18 +18,193 @@
 
             <div class="assignment-1">
                 <article>
-			<h2>quad_chart</h2>
-			
-			<p>During A, B, and C term, we students work on our IRPs. When we deploy our websites for the midway point of the year, we have yet to have finished the projects yet. As such, Dr. Crowthers has us create and deploy a quad chart, a small chart visualizing and explaining our project.</p>
+                    <h2>quad_chart</h2>
+                    
+                    <p>During A, B, and C term, we students work on our IRPs. When we deploy our websites for the midway point of the year, we have yet to have finished the projects yet. As such, Dr. Crowthers has us create and deploy a quad chart, a small chart visualizing and explaining our project.</p>
 
-			<p>
-				My project revolves around data compression, specifically neural compression, a subsection that involves the use of neural networks to compress files into a smaller form factor. In my project, I plan to prove that data compressors can indeed compress data down to the entropy limit, the smallest possible size a piece of data can be represented within. I am using Large Language Models in order to achieve this goal.
-			</p>
-		</article>
+                    <p>
+                        My project revolves around data compression, specifically neural compression, a subsection that involves the use of neural networks to compress files into a smaller form factor. In my project, I plan to prove that data compressors can indeed compress data down to the entropy limit, the smallest possible size a piece of data can be represented within. I am using Large Language Models in order to achieve this goal.
+                    </p>
+                </article>
 
                 <iframe src="../webContent/docs/stem_one/Kafle, Ruchir c2027 Quad Chart.pdf" title="Quad Chart" height="506" width="612"></iframe>
             </div>
-        </main>
+
+            <h1>Approaching Entropy Limits with Learned Lossless Compression</h1>
+
+            <p>
+                The aim of this project is to further research on learned compression. Specifically, the project aims to be able to compress text data to extremely small sizes, approaching entropy, the theoretical limit for data compression according to Shannon (1948).
+            </p>
+
+            <div class="abstracts">
+                <article>
+                    <h2>abstract</h2>
+                    
+                    <p>Data is the most important currency in the modern world. Increasingly more data is being stored by the day, however, data storage is costly, both monetarily and environmentally. To combat this problem, methods of compressing data into smaller spaces were developed, simply called data compressors. While these methods made great leaps in storing more data, many compressors eventually reach an incomplete upper limit to how much a given piece of data can be compressed. This project aimed to prove the ability of data compressors to improve furthermore, and reach the end goal that is entropy, the minimum size some data can losslessly be represented within, specifically regarding text data. To do this, a relatively novel idea was implemented, that being a hybrid data compressor, combining two large subsections of data science, learned or neural compression, where neural networks are used, along with traditional compression, where they are not. Along with that, a large language model (LLM) was used during learned compression, differing from typical neural compressors based on recurrent neural networks (RNNs) or transformers. The implemented compressor was then tested against a variety of text datasets, with resulting compressed sizes being compared to a calculated theoretical entropy. This comparison was used to judge the effectivity of the created compressor, and judge whether entropy can be reached with this approach. The conclusion of this study may serve significant to how data centers and other institutions or consumers store data, helping determine their rate of expansion.</p>
+
+                    <p>Keywords: Large Language Models, Data Compression, Neural Compression, Learned Compression, Entropy Limits, Hybrid Compressor</p>
+                </article>
+
+                <div class="images">
+                    <img src="../webContent/images/graphicalAbstract.png" alt="Graphical Abstract">
+                </div>
+            </div>
+
+            <h1 class="research-proposal"><a href="../pages/research_proposal.html">research proposal</a></h1>
+
+            <div class="phrases">
+                <article>
+                    <h2>research_question</h2>
+                    <p>Can a data compressor condense text data down to their entropy limit?</p>
+                </article>
+                <article>
+                    <h2>hypothesis</h2>
+                    
+                    <p> 
+                        Hyp. 1: It is hypothesized that a hybrid model, combining a neural network with a greater memory and semantic understanding of text, along with traditional models, can indeed approach the entropy limit.   
+                    <p>
+
+                    <p>
+                        Hyp. 2: A large language model being used in data compression will result in greater ability to predict upcoming tokens and through this ability, compress data further than other neural networks. 
+                    </p>
+                    
+                    <p>
+                        Hyp. 3: A hybrid model, including both neural and traditional compression sections, will result in greater overall compression than one or the other. 
+                    </p>
+                </article>
+            </div>
+
+            <div class="background">
+                <div class="images">
+                    <img src="../webContent/images/methodology.png" alt="Background infographic">
+                </div>
+
+                <article>
+                    <h2>background</h2>
+                    
+                    <p> 
+                        <h3>Data</h3>
+                        <p>
+                            A significant amount of data is being stored globally. ​126 zettabytes were stored in 2022 to 284 zettabytes in 2027(Sun et al., 2025). This is inefficient and expensive. ​
+                        </p>
+
+                        <h3>Traditional & Learned Compression</h3>
+                        <p>
+                            Algorithms that search for patterns in text andcondense them. Often scale with file size.​​Learned compression uses neural networksto predict (Sun et al., 2025).​Often use arithmetic encoders for compression.​​​Efficient, as letters are not independent of eachother (Mao et al., 2022).
+                        </p>
+
+                        <h3>Entropy</h3>
+                        <p>
+                            The smallest possible size a piece of data cantheoretically be stored within, according toShannon's information theory (1948).​​Formulas from Shannon (1948) can be usedto calculate theoretical entropy of data.​​The goal of every data compressor. ​
+                        </p>
+
+                        <h3>Issues</h3>
+                        <p>Bad semantics and short-term memory in RNNsand transformers. (Goyal et al., 2018)​</p>
+                    </p>
+                </article>
+            </div>
+
+            <div class="methodology">
+                <div class="images">
+                    <img src="../webContent/images/methodology.png" alt="Methodology infographic">
+                </div>
+
+                <article>
+                    <h2>methodology</h2>
+                </article>
+            </div>
+
+            <div class="pictures">
+                <div>
+                    <img src="../webContent/images/original_files.png" alt="Methodology infographic">
+                    <p>
+                        <strong>Figure 1:</strong> The sizes of the eight files used in testing the model. Each rangedfrom 781 bytes to 7433 bytes in ascending order, usually by a difference of 1000-2000 bytes.​
+                    </p>
+                </div>
+
+                <div>
+                    <img src="../webContent/images/encode_decode.png" alt="Methodology infographic">
+                    <p>
+                        <strong>Figure 3:</strong> The time it took a file to compress and decompress was measured. Compression and decompression time stayed extremely closeto each other, only differing by at worst a few seconds.​
+                    </p>
+                </div>
+
+                <div>
+                    <img src="../webContent/images/compression_ratio.png" alt="Methodology infographic">
+                    <p>
+                        <strong>Figure 2:</strong> During file compression, a theoretical file size was computed using Shannon's formula. After compression, the experimental file size wasfound. These metrics were compared to the original file sizes in bytes to find in whatpercentage the file was able to be represented.​
+                    </p>
+                </div>
+
+                <div>
+                    <img src="../webContent/images/paired_t_test.png" alt="Methodology infographic">
+                    <p>
+                        <strong>Figure 4:</strong> Each trial was run against XZ, a standard Linux data compressor. The large language model-based compressor consistently and significantly outperformed XZ. XZ's compression ratio does decrease as file size grows, suggesting need to compare on larger file scales.​
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="analysis">
+                <h2>analysis</h2>
+
+                <ul>
+                    <li>
+                        Paired t-test resulted in t-statistic of <strong>15.666</strong>. Resulted in <strong>p &#60; 0.001 (p = 1.045E-06)</strong>.
+                    </li>
+                    <li>
+                        ​​Evidence shows the difference between previous compression models and this large language-based model are statistically significant.​​
+                    </li>
+                    <li>
+                        Requires further testing as compression ratios of XZ and other compressors are sketchy at low filesizes.​
+                    </li>
+                </ul>
+
+            </div>
+
+            <div class="conclusion">
+                <h2>conclusions</h2>
+
+                <ul>
+                    <li>
+                        Compressors utilizing large language modelscompress files much smaller than othercompressors today, approaching entropy.​​
+                    </li>
+                    <li>
+                        Large language model-based compressorsdo not struggle with compressing small filesas traditional compressors do.
+                    </li>​
+                    <li><strong>
+                        ​Greater semantic understandings willallow for greater compression.​
+                    </li></strong>
+                </ul>
+
+                <h2>applications</h2>
+
+                <ul>
+                    <li>
+                        Businesses storing abundances of data canfree up storage.
+                    </li>
+                    <li>
+                        ​Consumers may be able to use to store moredata and transmit it with less bandwidth.​
+                    </li>
+                </ul>
+            </div>
+
+            <div class="references">
+                <iframe src="../webContent/docs/stem_one/Website References.pdf" title="STEM Website References" height="792" width="612"></iframe>
+
+                <article>
+                    <h2>references</h2>
+                </article>
+            </div>
+
+            <div class="feb-fair-poster">
+                <article>
+                    <h2>february_fair_poster</h2>
+                </article>
+
+                <iframe src="../webContent/docs/stem_one/Kafle, Ruchir c2027 February Fair Poster Final.pdf" title="February Fair Poster" height="512" width="612"></iframe>
+            </div>
+        </main> 
     </body>
 
 </html>
